@@ -63,6 +63,7 @@ def test_inference(init_test_client):
         "/predictions",
         headers={"Authorization": "Bearer 00000"},
         json={"TOTALMINIONSKILLED": 13, "KILLS": 6, "ASSISTS": 1, "DEATHS": 3,
-              "VISIONSCORE": 84, "TOTALDAMAGEDEALTTOCHAMPIONS": 130684, "WIN": 1})
+              "VISIONSCORE": 84, "TOTALDAMAGEDEALTTOCHAMPIONS": 130684,
+              "WIN": 1})
     assert response.status_code == 200
     assert response.json()["GOLDEARNED"] == 26254.563
