@@ -8,7 +8,8 @@ from pickle import dumps
 
 @pytest.fixture
 def create_data() -> dict[str, int | float]:
-    return {"TOTALMINIONSKILLED": 13, "KILLS": 6, "ASSISTS": 1, "DEATHS": 3, "VISIONSCORE": 84, "TOTALDAMAGEDEALTTOCHAMPIONS": 130684, "WIN": 1}
+    return {"TOTALMINIONSKILLED": 13, "KILLS": 6, "ASSISTS": 1, "DEATHS": 3,
+            "VISIONSCORE": 84, "TOTALDAMAGEDEALTTOCHAMPIONS": 130684, "WIN": 1}
 
 
 def test_make_inference(monkeypatch, create_data):

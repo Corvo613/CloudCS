@@ -29,7 +29,8 @@ def test_token_correctness(init_test_client) -> None:
     response = init_test_client.post(
         "/predictions",
         headers={"Authorization": "Bearer 00000"},
-        json={"TOTALMINIONSKILLED": 0, "KILLS": 0, "ASSISTS": 0, "DEATHS": 0, "VISIONSCORE": 0, "TOTALDAMAGEDEALTTOCHAMPIONS": 0, "WIN": True})
+        json={"TOTALMINIONSKILLED": 0, "KILLS": 0, "ASSISTS": 0, "DEATHS": 0,
+              "VISIONSCORE": 0, "TOTALDAMAGEDEALTTOCHAMPIONS": 0, "WIN": True})
     assert response.status_code == 200
     assert "GOLDEARNED" in response.json()
 
@@ -38,7 +39,8 @@ def test_token_not_correctness(init_test_client):
     response = init_test_client.post(
         "/predictions",
         headers={"Authorization": "Bearer kedjkj"},
-        json={"TOTALMINIONSKILLED": 0, "KILLS": 0, "ASSISTS": 0, "DEATHS": 0, "VISIONSCORE": 0, "TOTALDAMAGEDEALTTOCHAMPIONS": 0, "WIN": True})
+        json={"TOTALMINIONSKILLED": 0, "KILLS": 0, "ASSISTS": 0, "DEATHS": 0,
+              "VISIONSCORE": 0, "TOTALDAMAGEDEALTTOCHAMPIONS": 0, "WIN": True})
     assert response.status_code == 401
     assert response.json() == {
         "detail": "Invalid authentication credentials"
@@ -48,7 +50,8 @@ def test_token_not_correctness(init_test_client):
 def test_token_absent(init_test_client):
     response = init_test_client.post(
         "/predictions",
-        json={"TOTALMINIONSKILLED": 0, "KILLS": 0, "ASSISTS": 0, "DEATHS": 0, "VISIONSCORE": 0, "TOTALDAMAGEDEALTTOCHAMPIONS": 0, "WIN": True})
+        json={"TOTALMINIONSKILLED": 0, "KILLS": 0, "ASSISTS": 0, "DEATHS": 0,
+              "VISIONSCORE": 0, "TOTALDAMAGEDEALTTOCHAMPIONS": 0, "WIN": True})
     assert response.status_code == 401
     assert response.json() == {
         "detail": "Not authenticated"
@@ -59,6 +62,7 @@ def test_inference(init_test_client):
     response = init_test_client.post(
         "/predictions",
         headers={"Authorization": "Bearer 00000"},
-        json={"TOTALMINIONSKILLED": 13, "KILLS": 6, "ASSISTS": 1, "DEATHS": 3, "VISIONSCORE": 84, "TOTALDAMAGEDEALTTOCHAMPIONS": 130684, "WIN": 1})
+        json={"TOTALMINIONSKILLED": 13, "KILLS": 6, "ASSISTS": 1, "DEATHS": 3,
+              "VISIONSCORE": 84, "TOTALDAMAGEDEALTTOCHAMPIONS": 130684, "WIN": 1})
     assert response.status_code == 200
     assert response.json()["GOLDEARNED"] == 26254.563
