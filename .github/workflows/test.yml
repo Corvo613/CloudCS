@@ -43,6 +43,6 @@ jobs:
       run: | 
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
     - name: Build the Docker inference image
-      run: docker build . --file ServerDockerfile --tag $DOCKER_USER/$REPO_NAME:inference
+      run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:inference
     - name: Docker Push
       run: docker push $DOCKER_USER/$REPO_NAME:inference
